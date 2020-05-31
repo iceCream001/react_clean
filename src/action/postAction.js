@@ -1,9 +1,11 @@
-import {post} from 'axios';
+import {get} from 'axios';
 
-export const loadpost =  async function(dispatch){
-    const res = await post('http://jsonplaceholder.typicode.com/posts');
+const loadpost =  async function(dispatch){
+    const res = await get('http://jsonplaceholder.typicode.com/posts');
     dispatch({
       type:'loadpost',
       payload:res.data
     })
   }
+
+  export default loadpost;

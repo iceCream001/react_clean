@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
-class home extends Component {
+import { connect } from "react-redux";
+
+import loadpost from "../action/postAction";
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
         console.log(this.props)
     }
+    componentDidMount(){
+        this.props.dispatch(loadpost);
+    }
     render() {
+        console.log(this.props.post.list)
         return (
-            <div></div>
+        <div>
+            {
+            this.props.post.list.map((v,i)=>{
+            return <li key={i}>{v.title}</li>
+            })
+            }
+        </div>
         );
     }
 }
 
-export default home;
+const mapStateToProps = (state,ownProps)=>{
+    //state中存储reducer初始化数据，使用reducer的key取值
+    console.log(state)
+    return {
+        post:state.post
+    }
+}
+
+//通过connect连接组件和store的数据
+export default connect(mapStateToProps)(Home);

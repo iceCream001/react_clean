@@ -8,14 +8,17 @@ import store from "./store";
 import { addAction } from "./action/counterAction";
 import { loadpost } from "./action/postAction";
 
-store.dispatch(addAction);
-console.log(store.getState())
+import { Provider } from "react-redux";
 
-store.dispatch(loadpost);
-console.log(store.getState())
+// store.dispatch(addAction);
+// console.log(store.getState())
+
+// store.dispatch(loadpost);
+// console.log(store.getState())
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}><App /></Provider>
+  ,
   document.getElementById('root')
 );
 
